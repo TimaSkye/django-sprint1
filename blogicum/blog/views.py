@@ -45,10 +45,11 @@ posts = [
 
 
 def index(request):
-    return render(request, 'blog/index.html')
+    context = {'posts': posts}
+    return render(request, 'blog/index.html', context)
 
 
-def post_detail(request):
+def post_detail(request, category_slug):
     return render(request, 'blog/detail.html')
 
 

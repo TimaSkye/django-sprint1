@@ -1,6 +1,9 @@
-def about():
-    return None
+from django.shortcuts import render
 
 
-def rules():
-    return None
+def about(request):
+    return render(request, 'pages/about.html')
+
+
+def rules(request):
+    return render(request, 'pages/rules.html')

@@ -1,9 +1,9 @@
 from django.urls import path
 
-from . import views  # Импорт view-функций приложения Pages.
+from . import views
 
-app_name = 'pages'  # Определение пространства имен приложения Pages.
+app_name = 'pages'
 urlpatterns = [
-    path('about/', views.about, name='about'),  # Страница о проекте.
-    path('rules/', views.rules, name='rules'),  # Страница правил.
+    path('about/', views.about, name='about'),
+    path('rules/', views.rules, name='rules'),
 ]

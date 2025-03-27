@@ -46,7 +46,7 @@ posts = [
 
 def index(request):
     """Фунцкия рендера главной страницы проекта."""
-    context = {'posts': posts[::-1]}  # Инвертируем порядок для дальнейшего вывода.
+    context = {'posts': posts[::-1]}
     return render(request, 'blog/index.html', context)
 
 

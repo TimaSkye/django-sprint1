@@ -4,6 +4,6 @@ from . import views  # Импорт view-функций приложения Pag
 
 app_name = 'pages'  # Определение пространства имен приложения Pages.
 urlpatterns = [
-    path('pages/about/', views.about, name='about'),  # Страница о проекте.
-    path('pages/rules/', views.rules, name='rules'),  # Страница правил.
+    path('about/', views.about, name='about'),  # Страница о проекте.
+    path('rules/', views.rules, name='rules'),  # Страница правил.
 ]

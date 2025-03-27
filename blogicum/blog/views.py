@@ -45,15 +45,18 @@ posts = [
 
 
 def index(request):
+    """Фунцкия рендера главной страницы проекта."""
     context = {'posts': posts}
     return render(request, 'blog/index.html', context)
 
 
 def post_detail(request, id):
+    """Фунцкия рендера развернутой страницы поста."""
     context = {'post': posts[id]}
     return render(request, 'blog/detail.html', context)
 
 
 def category_post(request, category_slug):
+    """Фунцкия рендера страницы категорий поста."""
     context = {'category_post': category_slug}
     return render(request, 'blog/category.html', context)

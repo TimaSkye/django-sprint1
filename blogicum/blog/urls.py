@@ -1,10 +1,10 @@
 from django.urls import path
 
-from . import views
+from . import views  # Импорт view-функций приложения Blog.
 
-app_name = 'blog'
+app_name = 'blog'  # Определение пространства имен приложения Blog.
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('posts/<int:id>/', views.post_detail, name='post_detail'),
-    path('category/<slug:category_slug>/', views.category_post, name='category_post'),
+    path('', views.index, name='index'),  # Главная страница проекта.
+    path('posts/<int:id>/', views.post_detail, name='post_detail'),  # Развернутая страница поста.
+    path('category/<slug:category_slug>/', views.category_post, name='category_post'),  # Страница категорий поста.
 ]

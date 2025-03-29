@@ -62,7 +62,4 @@ def post_detail(request, post_id: int) -> None:
 
 def category_posts(request, category_slug: str) -> None:
     """Функция рендера страницы категорий поста."""
-    filtered_posts: list[dict[str, str]] = [post for post in posts_dict.values() if post['category'] == category_slug]
-    if not filtered_posts:
-        raise Http404(f"Посты с категорией '{category_slug}' не найдены.")
     return render(request, 'blog/category.html', {'category_posts': category_slug})

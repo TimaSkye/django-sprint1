@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 posts = [
@@ -43,20 +44,25 @@ posts = [
     },
 ]
 
-
-def index(request):
-    """Фунцкия рендера главной страницы проекта."""
-    context = {'posts': posts[::-1]}
-    return render(request, 'blog/index.html', context)
+posts_dict: dict[int, dict[str, str]] = {post['id']: post for post in posts}
 
 
-def post_detail(request, id):
-    """Фунцкия рендера развернутой страницы поста."""
-    context = {'post': posts[id]}
-    return render(request, 'blog/detail.html', context)
+def index(request) -> None:
+    """Функция рендера главной страницы проекта."""
+    return render(request, 'blog/index.html', {'posts': posts[::-1]})
 
 
-def category_posts(request, category_slug):
-    """Фунцкия рендера страницы категорий поста."""
-    context = {'category_posts': category_slug}
-    return render(request, 'blog/category.html', context)
+def post_detail(request, post_id: int) -> None:
+    """Функция рендера развернутой страницы поста."""
+    post: dict[str, str] | None = posts_dict.get(post_id)
+    if not post:
+        raise Http404(f"Пост с id {post_id} не найден.")
+    return render(request, 'blog/detail.html', {'post': post})
+
+
+def category_posts(request, category_slug: str) -> None:
+    """Функция рендера страницы категорий поста."""
+    filtered_posts: list[dict[str, str]] = [post for post in posts_dict.values() if post['category'] == category_slug]
+    if not filtered_posts:
+        raise Http404(f"Посты с категорией '{category_slug}' не найдены.")
+    return render(request, 'blog/category.html', {'category_posts': category_slug})

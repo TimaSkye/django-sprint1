@@ -5,5 +5,5 @@
 {% endblock %}
 
 {% block content %}
-{% include 'blog/includes/view_detail.html' %}
+{% include 'blog/includes/post.html' with post=post show_full_text=True %}
 {% endblock %}

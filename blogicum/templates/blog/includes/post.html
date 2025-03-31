@@ -1,4 +1,3 @@
-{% if show_full_text %}
 <article>
   <ul>
     <li>
@@ -11,22 +10,14 @@
       Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
     </li>
   </ul>
+
+  {% if show_full_text %}
   <p>
     {{ post.text|linebreaks }}
   </p>
+  {% else %}
+  <p>
+    {{ post.text|linebreaks|truncatewords:10 }}
+  </p>
+  {% endif %}
 </article>
-{% else %}
-<article>
-  <ul>
-    <li>
-      Место: {{ post.location }}
-    </li>
-    <li>
-      Дата: {{ post.date }}
-    </li>
-    <li>
-      Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
-    </li>
-  </ul>
-</article>
-{% endif %}
